@@ -27,12 +27,12 @@ public class CrearCuentaSteps {
 
     @Cuando("el usuario navega a la pagina de registro")
     public void elUsuarioNavegaALaPaginaDeRegistro() {
+        homePage = new HomePage(driver);
         registerPage.clickBotonMyAccount();
         registerPage = homePage.clickBotonRegisterMyAccount();
-        registerPage = new RegisterPage(driver);
     }
 
-    @Y("realiza el registro de datos en registrar cuenta")
+    @Y("realiza el registro de datos en registrar cuenta con nombre {string}, apellido {string}, usuario {string}, telefono {string}, contrasenia {string}")
     public void realizaElRegistroDeDatosEnRegistrarCuenta(String nombre, String apellido, String usuario, String telefono, String contrasenia) {
         registerPage.scrollHastaElFormulario();
         registerPage.realizarRegistroCon(nombre, apellido, usuario, telefono, contrasenia);
@@ -42,7 +42,8 @@ public class CrearCuentaSteps {
 
     @Entonces("valido elementos de registro cuenta")
     public void validoElementosDeRegistroCuenta() {
-        Assert.assertTrue(registerPage.isVisibleAccountCreated(), "No fue creada la cuenta");
+        String expectedText = "Congratulations! Your new account has been successfully created!";
+        Assert.assertTrue(registerPage.isVisibleAccountCreated().contains(expectedText), "No fue creada la cuenta");
     }
 
 }

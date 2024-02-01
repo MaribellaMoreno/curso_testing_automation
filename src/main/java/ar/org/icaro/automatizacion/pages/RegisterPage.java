@@ -103,8 +103,9 @@ public void clickBotonContinue() {
         return driver.findElement(botonContinueBy);
     }
 
-    public boolean isVisibleAccountCreated() {
+    public String isVisibleAccountCreated() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(textoAccountCreated));
-        return isVisibleAccountCreated();
+        WebElement accountCreated = driver.findElement(textoAccountCreated);
+        return accountCreated.getText();
     }
 }

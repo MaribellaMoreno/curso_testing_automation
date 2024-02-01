@@ -26,6 +26,8 @@ public class AgregarAlCarritoSteps {
 
     @Cuando("ingresa a seccion camaras y selecciono producto canon")
     public void ingresaASeccionCamarasYSeleccionoProductoCanon() {
+        homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
         accountPage.clickBotonCamara();
         accountPage.isVisibleNombreProducto();
     }
@@ -41,7 +43,9 @@ public class AgregarAlCarritoSteps {
 
     @Entonces("valido producto en carrito")
     public void validoProductoEnCarrito() {
-        Assert.assertTrue(accountPage.isVisibleSeccionShoppingCart(), "No se visualiza seccion Shopping Cart");
-        Assert.assertTrue(accountPage.isVisibleProductoSeleccionado(), "No coincide producto seleccionado");
+        String expectedTextSeccion = "(1)";
+        Assert.assertTrue(accountPage.isVisibleSeccionShoppingCart().contains(expectedTextSeccion), "No se visualiza seccion Shopping Cart");
+        String expectedTextSeleccionado = "Canon EOS 5D";
+        Assert.assertTrue(accountPage.isVisibleProductoSeleccionado().contains(expectedTextSeleccionado), "No coincide producto seleccionado");
     }
 }

@@ -61,19 +61,22 @@ public class AccountPage extends BasePage {
         return driver.findElement(botonWishListBy);
     }
 
-    public boolean isVisibleCantidadUno() {
+    public String isVisibleCantidadUno() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(textCantidad));
-        return isVisibleCantidadUno();
+        WebElement cantidadUno = driver.findElement(textCantidad);
+        return cantidadUno.getText();
     }
 
-    public boolean isVisibleProducto() {
+    public String isVisibleProducto() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(titleProducto));
-        return isVisibleProducto();
+        WebElement producto = driver.findElement(titleProducto);
+        return producto.getText();
     }
 
-    public boolean isVisibleNombreProducto() {
+    public String isVisibleNombreProducto() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(nombreProducto));
-        return isVisibleNombreProducto();
+        WebElement nameProducto = driver.findElement(nombreProducto);
+        return nameProducto.getText();
     }
 
     public void clickBotonSelect() {
@@ -125,13 +128,15 @@ public class AccountPage extends BasePage {
         return driver.findElement(buttonViewCart);
     }
 
-    public boolean isVisibleSeccionShoppingCart() {
+    public String isVisibleSeccionShoppingCart() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(titleShoppingCart));
-        return isVisibleProducto();
+        WebElement seccionShoppingCart = driver.findElement(titleShoppingCart);
+        return seccionShoppingCart.getText();
     }
 
-    public boolean isVisibleProductoSeleccionado() {
+    public String isVisibleProductoSeleccionado() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(titleProductoSeleccionado));
-        return isVisibleProducto();
+        WebElement productoSeleccionado = driver.findElement(titleProductoSeleccionado);
+        return productoSeleccionado.getText();
     }
 }
